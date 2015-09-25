@@ -39,7 +39,8 @@ def prompt(message)
 end
 
 def valid_number?(num)
-  num.to_i != 0
+  # num.to_i != 0
+  num.is_a?(Integer)  # bonus feature #1
 end
 
 def operation_to_message(op)
