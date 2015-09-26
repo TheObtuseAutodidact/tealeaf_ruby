@@ -40,6 +40,7 @@ end
 
 def valid_number?(num)
   # num.to_i != 0
+  num.each_char {|n| n =~ /^[0-9]+$/}
   num.is_a?(Integer)  # bonus feature #1
 end
 
