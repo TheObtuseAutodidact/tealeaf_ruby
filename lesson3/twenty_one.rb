@@ -20,7 +20,6 @@ suits.each do |suit|
 end
 
 full_deck.shuffle!
-#puts full_deck.inspect
 
 player_hand = []
 computer_hand = []
@@ -40,7 +39,6 @@ def hit(hand, deck)
   new_card = deck.shift
   hand << new_card
 end
-
 
 # *************************
 def total(cards)
@@ -66,34 +64,14 @@ def total(cards)
   sum
 end
 # **************************
-# def count_hand(hand)
-#   score = []
-#   no_ace_hand = hand.select do |card|
-#     card != 'a'
-#   no_ace_hand.each do |card|
-#     if card == 'j' || card == 'q' || card == 'k'
-#       score << 10
-#     else
-#       score << card.to_i
-#     end
-#   end
-#   if score.reduce(:+) <= 10
-#     'a' = 11
-#
-#
-#     end
-#   end
-#   score.inspect
-# end
 
 def busted?(hand)
   return true if total(hand) > 21
 end
 
-
 #   ******* Game Loop ******
 
-#open_game(player_hand, computer_hand, full_deck)
+# open_game(player_hand, computer_hand, full_deck)
 
 loop do
   open_game(player_hand, computer_hand, full_deck)
@@ -117,27 +95,21 @@ loop do
     end
   end
 
-  #loop do
-    if busted?(player_hand)
-      puts "Player Busted!"
-    else #busted?(computer_hand)
-      puts "Computer turn"
-      loop do
-        if total(computer_hand) < 17
-          hit(computer_hand, full_deck)
-          #break
-        elsif
-          total(computer_hand) >= 17 && total(computer_hand) <= 21
-            puts "Computer calls"
-            break
-        else
-          #if busted?(computer_hand)
-          puts "Computer Busted! Player Winds!"
-          break
-        #end
-        end
+  if busted?(player_hand)
+    puts "Player Busted!"
+  else
+    puts "Computer turn"
+    loop do
+      if total(computer_hand) < 17
+        hit(computer_hand, full_deck)
+      elsif  total(computer_hand) >= 17 && total(computer_hand) <= 21
+        puts "Computer calls"
+        break
+      else
+        puts "Computer Busted! Player Winds!"
+        break
       end
-    #end
+    end
   end
 
   if total(player_hand) > total(computer_hand) && !busted?(player_hand)
@@ -165,20 +137,3 @@ loop do
     computer_hand = []
   end
 end
-
-# puts total(player_hand), player_hand.inspect
-# puts total(computer_hand), computer_hand.inspect
-
-# player_hand.collect! { |k, v|  v }
-#
-#
-# computer_hand.collect! { |k, v| v }
-#
-#
-#
-# puts "the player has #{player_hand.inspect}"
-# puts "the computer has #{computer_hand.inspect}"
-#
-# hit(player_hand, full_deck)
-# puts "the player has #{player_hand.inspect}"
-# #puts count_hand(player_hand)
